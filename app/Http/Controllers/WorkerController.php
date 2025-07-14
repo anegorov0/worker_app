@@ -10,13 +10,11 @@ class WorkerController extends Controller
     public function index()
     {
         $workers = Worker::all();
-        foreach ($workers as $worker) {
-            dump($worker->name);
-        };
+        return view('workers.index', compact('workers'));
     }
 
-    public function show(){
-        return 'this is worker show';
+    public function show(Worker $worker){
+        return view('workers.show', compact('worker'));
     }
     public function create()
     {
