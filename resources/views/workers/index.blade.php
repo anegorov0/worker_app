@@ -26,6 +26,13 @@ Index page
 
                 <div><a href=" {{route('workers.edit', $worker->id)}} ">Редактировать</a></div>
             </div>
+            <div>
+                <form action="{{route('workers.delete', $worker->id)}}" method="post">
+                    @csrf
+                    @method('delete')
+                    <input type="submit" value="Удалить">
+                </form>
+            </div>
         </div>
         <hr>
     @endforeach
