@@ -23,6 +23,8 @@ Index page
             <div>Is married: {{$worker->is_married}}</div>
             <div>
                 <a href=" {{route('workers.show', $worker->id)}} ">Просмотреть</a>
+
+                <div><a href=" {{route('workers.edit', $worker->id)}} ">Редактировать</a></div>
             </div>
         </div>
         <hr>
