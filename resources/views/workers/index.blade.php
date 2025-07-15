@@ -9,6 +9,10 @@
 Index page
 <div>
     <hr>
+    <div>
+        <a href="{{route('workers.create')}}">Добавить</a>
+    </div>
+    <hr>
     @foreach($workers as $worker)
         <div>
             <div>Name: {{$worker->name}}</div>
@@ -16,8 +20,9 @@ Index page
             <div>email: {{$worker->email}}</div>
             <div>age: {{$worker->age}}</div>
             <div>description: {{$worker->description}}</div>
+            <div>Is married: {{$worker->is_married}}</div>
             <div>
-                <a href=" {{route('worker.show', $worker->id)}} ">Просмотреть</a>
+                <a href=" {{route('workers.show', $worker->id)}} ">Просмотреть</a>
             </div>
         </div>
         <hr>
