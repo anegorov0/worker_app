@@ -1,12 +1,8 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Document</title>
-</head>
-<body>
-Create page
+@extends('layout.main')
+
+@section('content')
+
+
 <div>
     <hr>
 
@@ -79,9 +75,13 @@ Create page
 
             </form>
 
+            <div>
+                <a href=" {{route('workers.index')}} ">Назад</a>
+            </div>
         </div>
         <hr>
 
 </div>
-</body>
-</html>
+
+
+@endsection
