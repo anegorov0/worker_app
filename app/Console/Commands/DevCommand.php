@@ -2,7 +2,10 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Profile;
 use Illuminate\Console\Command;
+use App\Models\Worker;
+
 
 class DevCommand extends Command
 {
@@ -25,6 +28,38 @@ class DevCommand extends Command
      */
     public function handle()
     {
-        dd(11111);
+        $this->prepareData();
+
+        $workers = Worker::find(1);
+        $profile = Profile::find(1);
+        dd($workers->profile->toArray());
+
+        return 0;
+    }
+    private function prepareData()
+    {
+        $workerData = [
+            'name' => 'Denis',
+            'surname' => 'Gusev',
+            'email' => 'gusev@mail.ru',
+            'age' => 35,
+            'description' => 'Gusev power',
+            'is_married' => false,
+
+        ];
+
+        $worker = Worker::create($workerData);
+
+        $profileData = [
+            'worker_id' => $worker->id,
+            'city' => 'Tashkent',
+            'skill' => 'Programmer',
+            'experience' => 7,
+            'finish_study' => '2010-07-01',
+        ];
+
+        $profile = Profile::create($profileData);
+
+        dd($profile->id);
     }
 }
