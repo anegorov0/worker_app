@@ -4,6 +4,8 @@ namespace App\Console\Commands;
 
 use App\Models\Position;
 use App\Models\Profile;
+use App\Models\Project;
+use App\Models\ProjectWorker;
 use Illuminate\Console\Command;
 use App\Models\Worker;
 
@@ -29,10 +31,8 @@ class DevCommand extends Command
      */
     public function handle()
     {
-//        $this->prepareData();
-        $worker = Worker::find(1);
-        $position = Position::find(1);
-        dd($position->workers->toArray());
+        $this->prepareData();
+        $this->prepareManyToMany();
 
         return 0;
     }
@@ -42,9 +42,9 @@ class DevCommand extends Command
         $position1 = Position::create([
             'title' => 'Developer',
         ]);
-//        $position2 = Position::create([
-//            'title' => 'Manager',
-//        ]);
+        $position2 = Position::create([
+            'title' => 'Manager',
+        ]);
         $position3 = Position::create([
             'title' => 'HR',
         ]);
@@ -63,7 +63,7 @@ class DevCommand extends Command
             'name' => 'Zaur',
             'surname' => 'Zaurov',
             'email' => 'zaur@mail.ru',
-            'position_id' => $position1->id,
+            'position_id' => $position2->id,
             'age' => 39,
             'description' => 'Zaur power',
             'is_married' => false,
@@ -111,4 +111,62 @@ class DevCommand extends Command
         Profile::create($profileData3);
 
     }
+
+
+    private function prepareManyToMany(){
+        $workerManager = Worker::find(2);
+        $workerBackend = Worker::find(1);
+
+        $workerDesigner1 = Worker::find(5);
+        $workerDesigner2 = Worker::find(6);
+        $workerFrontEnd1 = Worker::find(4);
+        $workerFrontEnd2 = Worker::find(3);
+
+
+        $project1 = Project::create([
+            'title' => 'Shop',
+        ]);
+        $project2 = Project::create([
+            'title' => 'Blog',
+        ]);
+
+
+        ProjectWorker::create([
+            'project_id' => $project1->id,
+            'worker_id' => $workerManager->id,
+        ]);
+        ProjectWorker::create([
+            'project_id' => $project1->id,
+            'worker_id' => $workerBackend->id,
+        ]);
+        ProjectWorker::create([
+            'project_id' => $project1->id,
+            'worker_id' => $workerDesigner1->id,
+        ]);
+        ProjectWorker::create([
+            'project_id' => $project1->id,
+            'worker_id' => $workerFrontEnd1->id,
+        ]);
+
+
+        ProjectWorker::create([
+            'project_id' => $project2->id,
+            'worker_id' => $workerManager->id,
+        ]);
+        ProjectWorker::create([
+            'project_id' => $project2->id,
+            'worker_id' => $workerBackend->id,
+        ]);
+        ProjectWorker::create([
+            'project_id' => $project2->id,
+            'worker_id' => $workerDesigner2->id,
+        ]);
+        ProjectWorker::create([
+            'project_id' => $project2->id,
+            'worker_id' => $workerFrontEnd2->id,
+        ]);
+    }
+
+
+
 }
