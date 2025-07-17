@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->boolean('is_married')->default(false);
             $table->timestamps();
+            $table->foreignId('position_id')->index()->constrained();
         });
     }
 
