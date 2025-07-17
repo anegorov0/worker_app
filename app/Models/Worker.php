@@ -35,7 +35,7 @@ class Worker extends Model
 {
     use HasFactory;
     protected $table = 'workers';
-    protected $guarded = [];
+    protected $guarded = false;
 
     public function profile(){
         return $this->hasOne(Profile::class, 'worker_id', 'id');

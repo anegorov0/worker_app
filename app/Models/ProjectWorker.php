@@ -10,7 +10,7 @@ class ProjectWorker extends Model
     use HasFactory;
 
     protected $table = 'project_workers';
-    protected $guarded = [];
+    protected $guarded = false;
 
 
 

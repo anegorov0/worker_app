@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Department;
 use App\Models\Position;
 use App\Models\Profile;
 use App\Models\Project;
@@ -31,22 +32,36 @@ class DevCommand extends Command
      */
     public function handle()
     {
-        $this->prepareData();
-        $this->prepareManyToMany();
+//        $this->prepareData();
+//        $this->prepareManyToMany();
+
+
+
 
         return 0;
     }
     private function prepareData()
     {
 
+        $departments1 = Department::create([
+            'title' => 'IT'
+        ]);
+        $departments2 = Department::create([
+            'title' => 'Analytics'
+        ]);
+
+
         $position1 = Position::create([
             'title' => 'Developer',
+            'department_id' => $departments1->id
         ]);
         $position2 = Position::create([
             'title' => 'Manager',
+            'department_id' => $departments1->id
         ]);
         $position3 = Position::create([
             'title' => 'HR',
+            'department_id' => $departments1->id
         ]);
 
         $workerData1 = [
@@ -79,10 +94,43 @@ class DevCommand extends Command
             'is_married' => false,
 
         ];
+        $workerData4 = [
+            'name' => 'Vsevolod',
+            'surname' => 'Dolgovyasii',
+            'email' => 'vse@mail.ru',
+            'position_id' => $position2->id,
+            'age' => 27,
+            'description' => 'gogogo power rangers',
+            'is_married' => false,
+
+        ];
+        $workerData5 = [
+            'name' => 'Evdakim',
+            'surname' => 'Kosoy',
+            'email' => 'ev@mail.ru',
+            'position_id' => $position1->id,
+            'age' => 44,
+            'description' => 'Boss of the bosses',
+            'is_married' => false,
+
+        ];
+        $workerData6 = [
+            'name' => 'Lisa',
+            'surname' => 'Vorobey',
+            'email' => 'lis@mail.ru',
+            'position_id' => $position3->id,
+            'age' => 25,
+            'description' => 'hr',
+            'is_married' => false,
+
+        ];
 
         $worker1 = Worker::create($workerData1);
         $worker2 = Worker::create($workerData2);
         $worker3 = Worker::create($workerData3);
+        $worker4 = Worker::create($workerData4);
+        $worker5 = Worker::create($workerData5);
+        $worker6 = Worker::create($workerData6);
 
         $profileData1 = [
             'worker_id' => $worker1->id,
@@ -105,10 +153,34 @@ class DevCommand extends Command
             'experience' => 1,
             'finish_study' => '2027-07-01',
         ];
+        $profileData4 = [
+            'worker_id' => $worker4->id,
+            'city' => 'Volgograd',
+            'skill' => 'Programmer',
+            'experience' => 6,
+            'finish_study' => '2020-07-01',
+        ];
+        $profileData5 = [
+            'worker_id' => $worker5->id,
+            'city' => 'Tver',
+            'skill' => 'BigProgrammer',
+            'experience' => 16,
+            'finish_study' => '2010-07-01',
+        ];
+        $profileData6 = [
+            'worker_id' => $worker6->id,
+            'city' => 'Ylyanovsk',
+            'skill' => 'BigMassNaim',
+            'experience' => 5,
+            'finish_study' => '2022-07-01',
+        ];
 
         Profile::create($profileData1);
         Profile::create($profileData2);
         Profile::create($profileData3);
+        Profile::create($profileData4);
+        Profile::create($profileData5);
+        Profile::create($profileData6);
 
     }
 

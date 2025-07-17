@@ -10,7 +10,7 @@ class Project extends Model
     use HasFactory;
 
     protected $table = 'projects';
-    protected $guarded = [];
+    protected $guarded = false;
 
     public function workers(){
         return $this->belongsToMany(Worker::class, 'project_worker', 'project_id', 'worker_id');
