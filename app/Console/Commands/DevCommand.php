@@ -40,19 +40,51 @@ class DevCommand extends Command
 
         $client = Client::find(2);
 
-        $worker->avatar()->create([
-           'path' => 'some path'
+        $worker->reviews()->create([
+           'body' => 'body 1'
+        ]);
+        $worker->reviews()->create([
+           'body' => 'body 2'
+        ]);
+        $worker->reviews()->create([
+           'body' => 'body 3'
         ]);
 
-        $client->avatar()->create([
-            'path' => 'some client'
+        $client->reviews()->create([
+           'body' => 'body 1'
         ]);
+        $client->reviews()->create([
+           'body' => 'body 2'
+        ]);
+        $client->reviews()->create([
+           'body' => 'body 3'
+        ]);
+        dd($worker->reviews->toArray());
+//
+//        $worker->avatar()->create([
+//           'path' => 'some path'
+//        ]);
+//
+//        $client->avatar()->create([
+//            'path' => 'some client'
+//        ]);
 
 
         return 0;
     }
     private function prepareData()
     {
+
+        Client::create([
+           'name' => 'Bob'
+        ]);
+        Client::create([
+           'name' => 'Victor'
+        ]);
+        Client::create([
+           'name' => 'Maria'
+        ]);
+
 
         $departments1 = Department::create([
             'title' => 'IT'
