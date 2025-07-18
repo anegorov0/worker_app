@@ -13,6 +13,6 @@ class Project extends Model
     protected $guarded = false;
 
     public function workers(){
-        return $this->belongsToMany(Worker::class, 'project_worker', 'project_id', 'worker_id');
+        return $this->belongsToMany(Worker::class);
     }
 }

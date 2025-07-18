@@ -38,14 +38,14 @@ class Worker extends Model
     protected $guarded = false;
 
     public function profile(){
-        return $this->hasOne(Profile::class, 'worker_id', 'id');
+        return $this->hasOne(Profile::class);
     }
 
     public function position(){
-        return $this->belongsTo(Position::class, 'position_id', 'id');
+        return $this->belongsTo(Position::class);
     }
 
     public function projects(){
-        return $this->belongsToMany(Project::class, 'project_worker', 'worker_id', 'project_id');
+        return $this->belongsToMany(Project::class);
     }
 }

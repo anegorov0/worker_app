@@ -133,54 +133,55 @@ class DevCommand extends Command
         $worker6 = Worker::create($workerData6);
 
         $profileData1 = [
-            'worker_id' => $worker1->id,
             'city' => 'Tashkent',
             'skill' => 'Programmer',
             'experience' => 7,
             'finish_study' => '2010-07-01',
         ];
         $profileData2 = [
-            'worker_id' => $worker2->id,
             'city' => 'Moscow',
             'skill' => 'Programmer',
             'experience' => 12,
             'finish_study' => '2007-07-01',
         ];
         $profileData3 = [
-            'worker_id' => $worker3->id,
             'city' => 'Samare',
             'skill' => 'MassNaim',
             'experience' => 1,
             'finish_study' => '2027-07-01',
         ];
         $profileData4 = [
-            'worker_id' => $worker4->id,
             'city' => 'Volgograd',
             'skill' => 'Programmer',
             'experience' => 6,
             'finish_study' => '2020-07-01',
         ];
         $profileData5 = [
-            'worker_id' => $worker5->id,
             'city' => 'Tver',
             'skill' => 'BigProgrammer',
             'experience' => 16,
             'finish_study' => '2010-07-01',
         ];
         $profileData6 = [
-            'worker_id' => $worker6->id,
             'city' => 'Ylyanovsk',
             'skill' => 'BigMassNaim',
             'experience' => 5,
             'finish_study' => '2022-07-01',
         ];
 
-        Profile::create($profileData1);
-        Profile::create($profileData2);
-        Profile::create($profileData3);
-        Profile::create($profileData4);
-        Profile::create($profileData5);
-        Profile::create($profileData6);
+        $worker1->profile()->create($profileData1);
+        $worker2->profile()->create($profileData2);
+        $worker3->profile()->create($profileData3);
+        $worker4->profile()->create($profileData4);
+        $worker5->profile()->create($profileData5);
+        $worker6->profile()->create($profileData6);
+
+//        Profile::create($profileData1);
+//        Profile::create($profileData2);
+//        Profile::create($profileData3);
+//        Profile::create($profileData4);
+//        Profile::create($profileData5);
+//        Profile::create($profileData6);
 
     }
 
@@ -195,48 +196,62 @@ class DevCommand extends Command
         $workerFrontEnd2 = Worker::find(3);
 
 
+
         $project1 = Project::create([
             'title' => 'Shop',
         ]);
         $project2 = Project::create([
             'title' => 'Blog',
         ]);
+        $project1->workers()->attach([
+            $workerManager->id,
+            $workerBackend->id,
+            $workerDesigner1->id,
+            $workerFrontEnd1->id,
 
-
-        ProjectWorker::create([
-            'project_id' => $project1->id,
-            'worker_id' => $workerManager->id,
-        ]);
-        ProjectWorker::create([
-            'project_id' => $project1->id,
-            'worker_id' => $workerBackend->id,
-        ]);
-        ProjectWorker::create([
-            'project_id' => $project1->id,
-            'worker_id' => $workerDesigner1->id,
-        ]);
-        ProjectWorker::create([
-            'project_id' => $project1->id,
-            'worker_id' => $workerFrontEnd1->id,
         ]);
 
+        $project2->workers()->attach([
+            $workerManager->id,
+            $workerBackend->id,
+            $workerDesigner2->id,
+            $workerFrontEnd2->id,
+        ]);
 
-        ProjectWorker::create([
-            'project_id' => $project2->id,
-            'worker_id' => $workerManager->id,
-        ]);
-        ProjectWorker::create([
-            'project_id' => $project2->id,
-            'worker_id' => $workerBackend->id,
-        ]);
-        ProjectWorker::create([
-            'project_id' => $project2->id,
-            'worker_id' => $workerDesigner2->id,
-        ]);
-        ProjectWorker::create([
-            'project_id' => $project2->id,
-            'worker_id' => $workerFrontEnd2->id,
-        ]);
+//        ProjectWorker::create([
+//            'project_id' => $project1->id,
+//            'worker_id' => $workerManager->id,
+//        ]);
+//        ProjectWorker::create([
+//            'project_id' => $project1->id,
+//            'worker_id' => $workerBackend->id,
+//        ]);
+//        ProjectWorker::create([
+//            'project_id' => $project1->id,
+//            'worker_id' => $workerDesigner1->id,
+//        ]);
+//        ProjectWorker::create([
+//            'project_id' => $project1->id,
+//            'worker_id' => $workerFrontEnd1->id,
+//        ]);
+//
+//
+//        ProjectWorker::create([
+//            'project_id' => $project2->id,
+//            'worker_id' => $workerManager->id,
+//        ]);
+//        ProjectWorker::create([
+//            'project_id' => $project2->id,
+//            'worker_id' => $workerBackend->id,
+//        ]);
+//        ProjectWorker::create([
+//            'project_id' => $project2->id,
+//            'worker_id' => $workerDesigner2->id,
+//        ]);
+//        ProjectWorker::create([
+//            'project_id' => $project2->id,
+//            'worker_id' => $workerFrontEnd2->id,
+//        ]);
     }
 
 
