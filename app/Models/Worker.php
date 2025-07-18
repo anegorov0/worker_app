@@ -48,4 +48,9 @@ class Worker extends Model
     public function projects(){
         return $this->belongsToMany(Project::class);
     }
+
+    public function avatar()
+    {
+        return $this->morphOne(Avatar::class, 'avatarable');
+    }
 }
