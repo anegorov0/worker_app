@@ -19,5 +19,8 @@ class Department extends Model
             ->where('positions_id', 4);
     }
 
-
+    public function workers()
+    {
+        return $this->hasManyThrough(Worker::class, Position::class, 'department_id', 'position_id', 'id', 'id')
+    }
 }
